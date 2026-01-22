@@ -1,0 +1,16 @@
+@startuml
+title Sequence: Отмена записи клиентом
+
+actor Client
+boundary UI
+control BookingService
+database DB
+
+Client -> UI : Отменить запись
+UI -> BookingService : cancelBooking(bookingId)
+
+BookingService -> DB : Обновить статус на CANCELLED
+BookingService --> UI : OK
+UI --> Client : Запись отменена
+
+@enduml

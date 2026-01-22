@@ -1,0 +1,19 @@
+@startuml
+title Sequence: Создание абонемента клиенту администратором
+
+actor Admin
+boundary UI
+control MembershipService
+database DB
+
+Admin -> UI : Добавить абонемент (тип, дата начала)
+UI -> MembershipService : createMembership()
+
+MembershipService -> DB : Получить тип абонемента
+MembershipService -> MembershipService : Расчет endDate
+
+MembershipService -> DB : Создать Membership (ACTIVE)
+MembershipService --> UI : OK
+UI --> Admin : Абонемент создан
+
+@enduml

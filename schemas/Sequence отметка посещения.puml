@@ -1,0 +1,20 @@
+@startuml
+title Sequence: Отметка посещения администратором
+
+actor Admin
+boundary UI
+control BookingService
+database DB
+
+Admin -> UI : Отметить посещенным
+UI -> BookingService : markAttendance(bookingId)
+
+alt Статус не BOOKED
+  BookingService --> UI : Error
+else Статус BOOKED
+  BookingService -> DB : Обновить статус на ATTENDED
+  BookingService --> UI : OK
+  UI --> Admin : Посещение отмечено
+end
+
+@enduml

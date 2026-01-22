@@ -1,0 +1,13 @@
+@startuml
+|CLIENT|
+start
+:Авторизация;
+:Просмотр своих записей;
+:Выбор записи;
+:Отмена записи;
+
+|SYSTEM|
+:Обновление Booking;
+:Статус = CANCELLED;
+stop
+@enduml

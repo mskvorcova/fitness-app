@@ -1,0 +1,18 @@
+@startuml
+|SYSTEM|
+start
+:Дата тренировки;
+:Получение Booking;
+
+|ADMIN|
+
+if (Посещение подтверждено?) then (да)
+  |SYSTEM|
+  :Статус = ATTENDED;
+else (нет)
+  |SYSTEM|
+  :Статус = NOT_ATTENDED;
+endif
+
+stop
+@enduml

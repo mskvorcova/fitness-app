@@ -1,0 +1,23 @@
+@startuml
+title Sequence: Создание записи на тренировку
+
+actor Client
+boundary UI
+control BookingService
+database DB
+
+Client -> UI : Выбрать тренировку
+UI -> BookingService : createBooking()
+
+BookingService -> DB : Проверка абонемента и свободных мест
+
+alt Проверки не пройдены
+  BookingService --> UI : Error
+  UI --> Client : Отказ в записи
+else Все проверки пройдены
+  BookingService -> DB : Создание Booking (BOOKED)
+  BookingService --> UI : OK
+  UI --> Client : Запись успешна
+end
+
+@enduml
